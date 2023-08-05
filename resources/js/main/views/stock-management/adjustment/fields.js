@@ -3,7 +3,7 @@ import { useI18n } from "vue-i18n";
 
 const fields = () => {
 	const addEditUrl = "stock-adjustments";
-	const url = "stock-adjustments?fields=xid,product_id,x_product_id,product{id,xid,name,image,image_url},quantity,adjustment_type";
+	const url = "stock-adjustments?fields=xid,product_id,x_product_id,product{id,xid,name,barcode_symbology,image,image_url},product:category{xid,name},product:details{purchase_price,sales_price,current_stock},quantity,adjustment_type";
 	const hashableColumns = ['product_id'];
 	const { t } = useI18n();
 
@@ -19,6 +19,26 @@ const fields = () => {
 			title: t("product.product"),
 			dataIndex: "product_id",
 		},
+		{
+            title: t("product.category"),
+            dataIndex: "category",
+        },
+        {
+            title: t("product.barcode_symbology"),
+            dataIndex: "barcode_symbology",
+        },
+        {
+            title: t("product.purchase_price"),
+            dataIndex: "purchase_price",
+        },
+        {
+            title: t("product.sales_price"),
+            dataIndex: "sales_price",
+        },
+        {
+            title: t("product.current_stock"),
+            dataIndex: "current_stock",
+        },
 		{
 			title: t("stock_adjustment.quantity"),
 			dataIndex: "quantity",

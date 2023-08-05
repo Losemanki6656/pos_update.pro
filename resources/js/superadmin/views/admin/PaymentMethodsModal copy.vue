@@ -1,6 +1,6 @@
 <template>
     <a-modal
-        :visible="visible"
+        :open="visible"
         :maskClosable="false"
         @cancel="onClose"
         :title="
@@ -14,7 +14,7 @@
     >
         <GoBack
             :visible="showPaymentButtons"
-            @clicked="() => (showPaymentButtons = true, showOfflineMenu = false, showPaymoMenu = false)"
+            @clicked="() => (showPaymentButtons = true)"
         />
 
         <PlanDetails
@@ -39,7 +39,7 @@
                     </a-button>
                 </a-col>
             </a-row>
-            <div v-if="!showPaymentButtons && showOfflineMenu">
+            <div v-if="!showPaymentButtons">
                 <OfflineMethod
                     :allMethods="responseData.offline_payment_modes"
                     :subscribePlan="subscribePlan"
@@ -55,7 +55,7 @@
                 :key="paymentMethod.xid"
             >
                 <div
-                    v-if="paymentMethod.status == 1 && paymentMethod.name_key == 'paymo'"
+                    v-if="paymentMethod.status == 1 && paymentMethod.name_key == 'stripe'"
                 >
                     <a-row :gutter="16" justify="center" v-if="showPaymentButtons">
                         <a-col :span="24">
@@ -70,17 +70,34 @@
                         </a-col>
                     </a-row>
 
-                    <div v-if="!showPaymentButtons && showPaymoMenu">
-                        <PaymoGateway
+                    <div v-if="!showPaymentButtons">
+                        <StripeGateway
                             v-if="
-                                paymentMethod.name_key == 'paymo' &&
-                                selectedPaymentMethod == 'paymo'
+                                paymentMethod.name_key == 'stripe' &&
+                                selectedPaymentMethod == 'stripe'
                             "
                             :paymentMethod="paymentMethod"
                             :subscribePlan="subscribePlan"
                             :planType="planType"
                             @success="closeModal"
                         />
+
+                        <!-- <PaypalGateway
+							v-if="
+								paymentMethod.name_key == 'paypal' &&
+								selectedPaymentMethod == 'paypal'
+							"
+						/>
+						<RazarpayGateway
+							v-if="
+								paymentMethod.name_key == 'razorpay' &&
+								selectedPaymentMethod == 'razorpay'
+							"
+							:paymentMethod="paymentMethod"
+							:subscribePlan="subscribePlan"
+							:planType="planType"
+							@success="closeModal"
+						/> -->
                     </div>
                 </div>
             </div>
@@ -93,7 +110,6 @@ import { ref, onMounted } from "vue";
 import PlanDetails from "./common/PlanDetails.vue";
 import GoBack from "./common/GoBack.vue";
 import StripeGateway from "./PaymentMethods/StripeGateway.vue";
-import PaymoGateway from "./PaymentMethods/PaymoGateway.vue";
 import PaypalGateway from "./PaymentMethods/PaypalGateway.vue";
 import RazarpayGateway from "./PaymentMethods/RazarpayGateway.vue";
 import OfflineMethod from "./PaymentMethods/OfflineMethod.vue";
@@ -105,36 +121,28 @@ export default {
         PaypalGateway,
         RazarpayGateway,
         OfflineMethod,
-        PaymoGateway,
+
         PlanDetails,
         GoBack,
     },
     setup(props, { emit }) {
         const responseData = ref([]);
         const showPaymentButtons = ref(true);
-        const showOfflineMenu = ref(false);
-        const showPaymoMenu = ref(false);
         const selectedPaymentMethod = ref("");
 
         onMounted(() => {
             axiosAdmin.get("all-payment-methods").then((response) => {
                 responseData.value = response.data;
-                console.log(response.data);
             });
         });
 
         const makePayment = (payMethod) => {
             showPaymentButtons.value = false;
-            showOfflineMenu.value = false;
-            showPaymoMenu.value = true;
             selectedPaymentMethod.value = payMethod.name_key;
-            // console.log(showPaymoMenu);
         };
 
         const offlinePayment = () => {
             showPaymentButtons.value = false;
-            showOfflineMenu.value = true;
-            // console.log(showOfflineMenu);
         };
 
         const offlinePaymentSuccess = (reloadPage) => {
@@ -157,8 +165,6 @@ export default {
             responseData,
             onClose,
             makePayment,
-            showPaymoMenu,
-            showOfflineMenu,
             showPaymentButtons,
             selectedPaymentMethod,
 

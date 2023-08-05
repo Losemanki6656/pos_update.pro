@@ -15,6 +15,8 @@ use App\SuperAdmin\Http\Requests\Api\PaymentSettings\MollieIndexRequest;
 use App\SuperAdmin\Http\Requests\Api\PaymentSettings\MollieUpdateRequest;
 use App\SuperAdmin\Http\Requests\Api\PaymentSettings\AuthorizeIndexRequest;
 use App\SuperAdmin\Http\Requests\Api\PaymentSettings\AuthorizeUpdateRequest;
+use App\SuperAdmin\Http\Requests\Api\PaymentSettings\PaymoUpdateRequest;
+use App\SuperAdmin\Http\Requests\Api\PaymentSettings\PaymoIndexRequest;
 use App\SuperAdmin\Models\GlobalSettings;
 use Examyou\RestAPI\ApiResponse;
 
@@ -97,6 +99,50 @@ class PaymentSettingsController extends ApiBaseController
             ->update([
                 'credentials' => $settingData,
                 'status' => $request->stripe_status == 'active' ? 1 : 0
+            ]);
+
+        return ApiResponse::make('Success', []);
+    }
+
+    public function getPaymo(PaymoIndexRequest $request)
+    {
+        $settings = GlobalSettings::where('setting_type', 'payment_settings')
+            ->where('name_key', 'paymo')
+            ->first();
+
+        $settingData = [
+            'paymo_api_key' => $settings->credentials['paymo_api_key'],
+            'paymo_api_secret' => $settings->credentials['paymo_api_secret'],
+            'paymo_store_id' => $settings->credentials['paymo_store_id'],
+            'paymo_terminal_id' => $settings->credentials['paymo_terminal_id'],
+            'paymo_status' => $settings->credentials['paymo_status'],
+        ];
+
+        return ApiResponse::make(
+            'Success',
+            [
+                'data' => $settingData,
+                'webhook_url' => route('webhook.save-stripe-invoices')
+            ]
+        );
+    }
+
+
+    public function updatePaymo(PaymoUpdateRequest $request)
+    {
+        $settingData = [
+            'paymo_api_key' => $request->paymo_api_key,
+            'paymo_api_secret' => $request->paymo_api_secret,
+            'paymo_store_id' => $request->paymo_store_id,
+            'paymo_terminal_id' => $request->paymo_terminal_id,
+            'paymo_status' => $request->paymo_status,
+        ];
+
+        GlobalSettings::where('setting_type', 'payment_settings')
+            ->where('name_key', 'paymo')
+            ->update([
+                'credentials' => $settingData,
+                'status' => $request->paymo_status == 'active' ? 1 : 0
             ]);
 
         return ApiResponse::make('Success', []);

@@ -178,6 +178,9 @@ export default {
         const user = store.state.auth.user;
 
         onMounted(() => {
+
+            window.parent.Emoji();
+            
             formData.value = {
                 name: user.name,
                 email: user.email,

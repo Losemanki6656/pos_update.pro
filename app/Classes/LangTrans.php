@@ -419,6 +419,7 @@ class LangTrans
             'details' => 'Details',
             'register_date' => 'Register Date',
             'total_users' => 'Total Users',
+            'licence_expire_on' => 'Expire Date',
         ],
         'tax' => [
             'add' => 'Add New Tax',

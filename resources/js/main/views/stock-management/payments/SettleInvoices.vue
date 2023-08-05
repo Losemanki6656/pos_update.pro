@@ -33,6 +33,20 @@
 					</template>
 					<template #summary>
 						<a-table-summary fixed>
+                            <a-table-summary-row>
+                                <a-table-summary-cell :col-span="3">
+                                    <a-typography-text strong>
+                                        {{ $t("payments.total_amount") }} :
+                                    </a-typography-text>
+                                </a-table-summary-cell>
+                                <a-table-summary-cell :col-span="2">
+                                    {{
+                                        formatAmountCurrency(totalAmount)
+                                    }}
+                                </a-table-summary-cell>
+                            </a-table-summary-row>
+                        </a-table-summary>
+						<a-table-summary fixed>
 							<a-table-summary-row>
 								<a-table-summary-cell :col-span="3">
 									<a-typography-text strong>
@@ -75,6 +89,7 @@ export default defineComponent({
 		const { formatDate, disabledDate, appSetting, formatAmountCurrency } = common();
 		const invoices = ref([]);
 		const setteledAmount = ref(0);
+        const totalAmount = ref(0);
 		const unUsedAmount = ref(0);
 
 		onMounted(() => {
@@ -102,8 +117,10 @@ export default defineComponent({
 					const allInvoices = response.data.invoices;
 					var enteredAmount = props.amount;
 					var setteledAmt = 0;
+                    var total = 0;
 
 					forEach(allInvoices, (allInvoice) => {
+                        total = total + allInvoice.total;
 						if (allInvoice.due_amount <= enteredAmount) {
 							allInvoice.paying_amount = allInvoice.due_amount;
 							enteredAmount =
@@ -120,6 +137,7 @@ export default defineComponent({
 						}
 					});
 
+                    totalAmount.value = total;
 					setteledAmount.value = setteledAmt;
 					unUsedAmount.value =
 						parseFloat(props.amount) - parseFloat(setteledAmt);
@@ -171,6 +189,7 @@ export default defineComponent({
 			onClose,
 			onSubmit,
 			invoices,
+			totalAmount,
 
 			settleInvoiceColumns,
 			setteledAmount,

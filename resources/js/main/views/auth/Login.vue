@@ -80,6 +80,14 @@
                                         {{ $t("menu.login") }}
                                     </a-button>
                                 </a-form-item>
+
+                                <a-form-item class="mt-30">
+                                    <a href="/register" type="button" block
+                                        style="width: 100%; align-content: center; align-items: center; text-align: center;">
+                                        {{ $t("menu.or_register") }}
+                                    </a>
+                                </a-form-item>
+
                             </a-form>
                             <DemoCredentials :credentials="credentials" />
                         </a-card>
@@ -96,7 +104,7 @@
 </template>
 
 <script>
-import { defineComponent, reactive, ref } from "vue";
+import { defineComponent, onMounted, reactive, ref } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import common from "../../../common/composable/common";
@@ -120,6 +128,10 @@ export default defineComponent({
         const onRequestSend = ref({
             error: "",
             success: "",
+        });
+
+        onMounted(() => {
+            window.parent.Emoji();
         });
 
         const onSubmit = () => {

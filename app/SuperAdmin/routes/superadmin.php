@@ -20,6 +20,11 @@ ApiRoute::group(['namespace' => 'App\SuperAdmin\Http\Controllers\Api\Admin', 'mi
     ApiRoute::post('razorpay-subscription', ['as' => 'api.extra.razorpay.subscription', 'uses' => 'RazorpaySubscriptionController@razorpaySubscription']);
     ApiRoute::post('razorpay-payment', ['as' => 'api.extra.razorpay.payment', 'uses' => 'RazorpaySubscriptionController@razorpayPayment']);
 
+    // Paymo
+    ApiRoute::post('paymo-payment', ['as' => 'api.extra.paymo.payment', 'uses' => 'AdminPaymoController@paymoPayment']);
+    ApiRoute::post('bind-card', ['as' => 'api.extra.paymo.bind-card', 'uses' => 'AdminPaymoController@bindCard']);
+    ApiRoute::post('confirm-paymo', ['as' => 'api.extra.paymo.confirm-paymo', 'uses' => 'AdminPaymoController@confirmPaymo']);
+
     // Stripe
     ApiRoute::post('stripe-payment', ['as' => 'api.extra.stripe.payment', 'uses' => 'AdminStripeController@stripePayment']);
 
@@ -90,5 +95,8 @@ ApiRoute::group(['namespace' => 'App\SuperAdmin\Http\Controllers\Api', 'prefix' 
         ApiRoute::get('mollie', ['as' => 'api.payment-settings.mollie.index', 'uses' => 'PaymentSettingsController@getMollie']);
         ApiRoute::post('authorize/update', ['as' => 'api.payment-settings.authorize.update', 'uses' => 'PaymentSettingsController@updateAuthorize']);
         ApiRoute::get('authorize', ['as' => 'api.payment-settings.authorize.index', 'uses' => 'PaymentSettingsController@getAuthorize']);
+        
+        ApiRoute::get('paymo', ['as' => 'api.payment-settings.paymo.index', 'uses' => 'PaymentSettingsController@getPaymo']);
+        ApiRoute::post('paymo/update', ['as' => 'api.payment-settings.paymo.update', 'uses' => 'PaymentSettingsController@updatePaymo']);
     });
 });

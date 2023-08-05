@@ -3,6 +3,7 @@ import SubscriptionPlanIndex from '../views/subscriptions/subscription-plans/ind
 import OfflinePaymentModeIndex from '../views/subscriptions/offline-payment-modes/index.vue';
 import PaypalSetting from '../views/subscriptions/payment-settings/Paypal.vue';
 import StripeSetting from '../views/subscriptions/payment-settings/Stripe.vue';
+import PaymoSetting from '../views/subscriptions/payment-settings/Paymo.vue';
 import RazorpaySetting from '../views/subscriptions/payment-settings/Razorpay.vue';
 import PaystackSetting from '../views/subscriptions/payment-settings/Paystack.vue';
 import MollieSetting from '../views/subscriptions/payment-settings/Mollie.vue';
@@ -33,6 +34,17 @@ export default [
                     menuParent: "subscriptions",
                     menuKey: "offline_payment_modes",
                     permission: 'superadmin'
+                }
+            },
+            {
+                path: 'paymo',
+                component: PaymoSetting,
+                name: 'superadmin.payment_settings.paymo.index',
+                meta: {
+                    requireAuth: true,
+                    menuParent: "subscriptions",
+                    menuKey: route => "paymo",
+                    permission: "superadmin"
                 }
             },
             {

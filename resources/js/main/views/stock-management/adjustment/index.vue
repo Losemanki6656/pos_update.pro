@@ -21,28 +21,21 @@
         <a-row :gutter="[16, 16]">
             <a-col :xs="24" :sm="24" :md="12" :lg="10" :xl="10">
                 <a-space>
-                    <template
-                        v-if="
-                            permsArray.includes('stock_adjustments_create') ||
-                            permsArray.includes('admin')
-                        "
-                    >
+                    <template v-if="permsArray.includes('stock_adjustments_create') ||
+                        permsArray.includes('admin')
+                        ">
                         <a-button type="primary" @click="addItem">
                             <PlusOutlined />
                             {{ $t("stock_adjustment.add") }}
                         </a-button>
                     </template>
-                    <a-button
-                        v-if="
-                            table.selectedRowKeys.length > 0 &&
-                            (permsArray.includes('stock_adjustments_delete') ||
-                                permsArray.includes('admin'))
-                        "
-                        type="primary"
-                        @click="showSelectedDeleteConfirm"
-                        danger
-                    >
-                        <template #icon><DeleteOutlined /></template>
+                    <a-button v-if="table.selectedRowKeys.length > 0 &&
+                        (permsArray.includes('stock_adjustments_delete') ||
+                            permsArray.includes('admin'))
+                        " type="primary" @click="showSelectedDeleteConfirm" danger>
+                        <template #icon>
+                            <DeleteOutlined />
+                        </template>
                         {{ $t("common.delete") }}
                     </a-button>
                 </a-space>
@@ -50,14 +43,11 @@
             <a-col :xs="24" :sm="24" :md="12" :lg="14" :xl="14">
                 <a-row :gutter="[16, 16]" justify="end">
                     <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="6">
-                        <ProductSearchInput
-                            @valueChanged="
-                                (productId) => {
-                                    filters.product_id = productId;
-                                    reFetchDatatable();
-                                }
-                            "
-                        />
+                        <ProductSearchInput @valueChanged="(productId) => {
+                                filters.product_id = productId;
+                                reFetchDatatable();
+                            }
+                            " />
                     </a-col>
                 </a-row>
             </a-col>
@@ -65,55 +55,47 @@
     </admin-page-filters>
 
     <admin-page-table-content>
-        <AddEdit
-            :addEditType="addEditType"
-            :visible="addEditVisible"
-            :url="addEditUrl"
-            @addEditSuccess="addEditSuccess"
-            @closed="onCloseAddEdit"
-            :formData="formData"
-            :data="viewData"
-            :pageTitle="pageTitle"
-            :successMessage="successMessage"
-        />
+        <AddEdit :addEditType="addEditType" :visible="addEditVisible" :url="addEditUrl" @addEditSuccess="addEditSuccess"
+            @closed="onCloseAddEdit" :formData="formData" :data="viewData" :pageTitle="pageTitle"
+            :successMessage="successMessage" />
 
         <a-row>
             <a-col :span="24">
                 <div class="table-responsive">
-                    <a-table
-                        :row-selection="{
-                            selectedRowKeys: table.selectedRowKeys,
-                            onChange: onRowSelectChange,
-                            getCheckboxProps: (record) => ({
-                                disabled: false,
-                                name: record.xid,
-                            }),
-                        }"
-                        :columns="columns"
-                        :row-key="(record) => record.xid"
-                        :data-source="table.data"
-                        :pagination="table.pagination"
-                        :loading="table.loading"
-                        @change="handleTableChange"
-                        bordered
-                        size="middle"
-                    >
+                    <a-table :row-selection="{
+                        selectedRowKeys: table.selectedRowKeys,
+                        onChange: onRowSelectChange,
+                        getCheckboxProps: (record) => ({
+                            disabled: false,
+                            name: record.xid,
+                        }),
+                    }" :columns="columns" :row-key="(record) => record.xid" :data-source="table.data"
+                        :pagination="table.pagination" :loading="table.loading" @change="handleTableChange" bordered
+                        size="middle">
                         <template #bodyCell="{ column, record }">
                             <template v-if="column.dataIndex === 'product_id'">
                                 <a-badge>
-                                    <a-avatar
-                                        shape="square"
-                                        :src="record.product.image_url"
-                                    />
+                                    <a-avatar shape="square" :src="record.product.image_url" />
                                     {{ record.product.name }}
                                 </a-badge>
                             </template>
+                            <template v-if="column.dataIndex === 'category'">
+                                {{ record.product.category ? record.product.category.name : "-" }}
+                            </template>
+                            <template v-if="column.dataIndex === 'barcode_symbology'">
+                                {{ record.product.barcode_symbology }}
+                            </template>
+                            <template v-if="column.dataIndex === 'purchase_price'">
+                                {{ record.product.details.purchase_price }}
+                            </template>
+                            <template v-if="column.dataIndex === 'sales_price'">
+                                {{ record.product.details.sales_price }}
+                            </template>
+                            <template v-if="column.dataIndex === 'current_stock'">
+                                {{ record.product.details.current_stock }}
+                            </template>
                             <template v-if="column.dataIndex === 'quantity'">
-                                <a-typography-text
-                                    v-if="record.adjustment_type == 'add'"
-                                    type="success"
-                                    strong
-                                >
+                                <a-typography-text v-if="record.adjustment_type == 'add'" type="success" strong>
                                     +{{ record.quantity }}
                                 </a-typography-text>
                                 <a-typography-text v-else type="danger" strong>
@@ -121,27 +103,19 @@
                                 </a-typography-text>
                             </template>
                             <template v-if="column.dataIndex === 'action'">
-                                <a-button
-                                    v-if="
-                                        permsArray.includes('stock_adjustments_edit') ||
-                                        permsArray.includes('admin')
-                                    "
-                                    type="primary"
-                                    @click="editItem(record)"
-                                    style="margin-left: 4px"
-                                >
-                                    <template #icon><EditOutlined /></template>
+                                <a-button v-if="permsArray.includes('stock_adjustments_edit') ||
+                                    permsArray.includes('admin')
+                                    " type="primary" @click="editItem(record)" style="margin-left: 4px">
+                                    <template #icon>
+                                        <EditOutlined />
+                                    </template>
                                 </a-button>
-                                <a-button
-                                    v-if="
-                                        permsArray.includes('stock_adjustments_delete') ||
-                                        permsArray.includes('admin')
-                                    "
-                                    type="primary"
-                                    @click="showDeleteConfirm(record.xid)"
-                                    style="margin-left: 4px"
-                                >
-                                    <template #icon><DeleteOutlined /></template>
+                                <a-button v-if="permsArray.includes('stock_adjustments_delete') ||
+                                    permsArray.includes('admin')
+                                    " type="primary" @click="showDeleteConfirm(record.xid)" style="margin-left: 4px">
+                                    <template #icon>
+                                        <DeleteOutlined />
+                                    </template>
                                 </a-button>
                             </template>
                         </template>

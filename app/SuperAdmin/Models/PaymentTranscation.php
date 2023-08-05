@@ -57,6 +57,11 @@ class PaymentTranscation extends BaseModel
         return $query->where('payment_method', 'stripe');
     }
 
+    public function scopePaymo($query)
+    {
+        return $query->where('payment_method', 'paymo');
+    }
+
     public function scopeRazorpay($query)
     {
         return $query->where('payment_method', 'razorpay');

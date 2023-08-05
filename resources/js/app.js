@@ -85,6 +85,35 @@ async function bootstrap() {
     })
 }
 
+window.Emoji = function () {
+    var ranges = [
+        '\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff]'
+    ];
+
+    function removeInvalidChars(str) {
+        return str.replace(new RegExp(ranges.join('|'), 'g'), '');
+    }
+
+    document.querySelectorAll('input').forEach(function (element) {
+        element.removeEventListener('blur', (e) => {
+            console.log(1);
+        });
+        element.removeEventListener('focus', (e) => {
+            console.log(1);
+        });
+        element.removeEventListener('input', (e) => {
+            console.log(1);
+        });
+    });
+
+    document.querySelectorAll('input').forEach(function (element) {
+        element.addEventListener('input', (event) => {
+            element.value = removeInvalidChars(event.target.value);
+        });
+    });
+}
+
+
 bootstrap();
 
 

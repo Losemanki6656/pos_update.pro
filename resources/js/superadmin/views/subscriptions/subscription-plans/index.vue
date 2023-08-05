@@ -33,21 +33,15 @@
                                 <PlusOutlined />
                                 {{ $t("subscription_plans.add") }}
                             </a-button>
-                            <a-button
-                                type="primary"
-                                @click="trailPlanSetting"
-                                :loading="loadingTrial"
-                            >
+                            <a-button type="primary" @click="trailPlanSetting" :loading="loadingTrial">
                                 <CrownOutlined />
                                 {{ $t("subscription_plans.free_trail_settings") }}
                             </a-button>
-                            <a-button
-                                v-if="table.selectedRowKeys.length > 0"
-                                type="primary"
-                                @click="showSelectedDeleteConfirm"
-                                danger
-                            >
-                                <template #icon><DeleteOutlined /></template>
+                            <a-button v-if="table.selectedRowKeys.length > 0" type="primary"
+                                @click="showSelectedDeleteConfirm" danger>
+                                <template #icon>
+                                    <DeleteOutlined />
+                                </template>
                                 {{ $t("common.delete") }}
                             </a-button>
                         </a-space>
@@ -56,28 +50,15 @@
                         <a-row :gutter="[16, 16]" justify="end">
                             <a-col :xs="24" :sm="24" :md="16" :lg="12" :xl="10">
                                 <a-input-group compact>
-                                    <a-select
-                                        style="width: 25%"
-                                        v-model:value="table.searchColumn"
-                                        :placeholder="
-                                            $t('common.select_default_text', [''])
-                                        "
-                                    >
-                                        <a-select-option
-                                            v-for="filterableColumn in filterableColumns"
-                                            :key="filterableColumn.key"
-                                        >
+                                    <a-select style="width: 25%" v-model:value="table.searchColumn" :placeholder="$t('common.select_default_text', [''])
+                                        ">
+                                        <a-select-option v-for="filterableColumn in filterableColumns"
+                                            :key="filterableColumn.key">
                                             {{ filterableColumn.value }}
                                         </a-select-option>
                                     </a-select>
-                                    <a-input-search
-                                        style="width: 75%"
-                                        v-model:value="table.searchString"
-                                        show-search
-                                        @change="onTableSearch"
-                                        @search="onTableSearch"
-                                        :loading="table.filterLoading"
-                                    />
+                                    <a-input-search style="width: 75%" v-model:value="table.searchString" show-search
+                                        @change="onTableSearch" @search="onTableSearch" :loading="table.filterLoading" />
                                 </a-input-group>
                             </a-col>
                         </a-row>
@@ -86,60 +67,36 @@
             </admin-page-filters>
 
             <admin-page-table-content>
-                <AddEdit
-                    :addEditType="addEditType"
-                    :visible="addEditVisible"
-                    :url="addEditUrl"
-                    @addEditSuccess="addEditSuccess"
-                    @closed="onCloseAddEdit"
-                    :formData="formData"
-                    :data="viewData"
-                    :pageTitle="pageTitle"
-                    :successMessage="successMessage"
-                />
+                <AddEdit :addEditType="addEditType" :visible="addEditVisible" :url="addEditUrl"
+                    @addEditSuccess="addEditSuccess" @closed="onCloseAddEdit" :formData="formData" :data="viewData"
+                    :pageTitle="pageTitle" :successMessage="successMessage" />
 
                 <a-row>
                     <a-col :span="24">
                         <div class="table-responsive">
-                            <a-table
-                                :row-selection="{
-                                    selectedRowKeys: table.selectedRowKeys,
-                                    onChange: onRowSelectChange,
-                                    getCheckboxProps: (record) => ({
-                                        disabled: record.default != 'yes' ? false : true,
-                                        name: record.xid,
-                                    }),
-                                }"
-                                :columns="columns"
-                                :row-key="(record) => record.xid"
-                                :data-source="table.data"
-                                :pagination="table.pagination"
-                                :loading="table.loading"
-                                @change="handleTableChange"
-                                bordered
-                                size="middle"
-                            >
+                            <a-table :row-selection="{
+                                selectedRowKeys: table.selectedRowKeys,
+                                onChange: onRowSelectChange,
+                                getCheckboxProps: (record) => ({
+                                    disabled: record.default != 'yes' ? false : true,
+                                    name: record.xid,
+                                }),
+                            }" :columns="columns" :row-key="(record) => record.xid" :data-source="table.data"
+                                :pagination="table.pagination" :loading="table.loading" @change="handleTableChange" bordered
+                                size="middle">
                                 <template #bodyCell="{ column, record }">
-                                    <template
-                                        v-if="column.dataIndex === 'pricing_details'"
-                                    >
+                                    <template v-if="column.dataIndex === 'pricing_details'">
                                         <a-descriptions :column="1" size="small">
-                                            <a-descriptions-item
-                                                :label="
-                                                    $t('subscription_plans.monthly_price')
-                                                "
-                                            >
+                                            <a-descriptions-item :label="$t('subscription_plans.monthly_price')
+                                                ">
                                                 {{
                                                     formatAmountCurrency(
                                                         record.monthly_price
                                                     )
                                                 }}
                                             </a-descriptions-item>
-                                            <a-descriptions-item
-                                                :label="
-                                                    $t('subscription_plans.annual_price')
-                                                "
-                                            >
+                                            <a-descriptions-item :label="$t('subscription_plans.annual_price')
+                                                    ">
                                                 {{
                                                     formatAmountCurrency(
                                                         record.annual_price
@@ -150,10 +107,7 @@
                                     </template>
                                     <template v-if="column.dataIndex === 'modules'">
                                         <ul>
-                                            <li
-                                                v-for="activeModuleValue in record.modules"
-                                                :key="activeModuleValue"
-                                            >
+                                            <li v-for="activeModuleValue in record.modules" :key="activeModuleValue">
                                                 {{
                                                     $t(
                                                         `subscription_plans.${activeModuleValue}`
@@ -163,20 +117,16 @@
                                         </ul>
                                     </template>
                                     <template v-if="column.dataIndex === 'action'">
-                                        <a-button
-                                            type="primary"
-                                            @click="editItem(record)"
-                                            style="margin-left: 4px"
-                                        >
-                                            <template #icon><EditOutlined /></template>
+                                        <a-button type="primary" @click="editItem(record)" style="margin-left: 4px">
+                                            <template #icon>
+                                                <EditOutlined />
+                                            </template>
                                         </a-button>
-                                        <a-button
-                                            v-if="record.default != 'yes'"
-                                            type="primary"
-                                            @click="showDeleteConfirm(record.xid)"
-                                            style="margin-left: 4px"
-                                        >
-                                            <template #icon><DeleteOutlined /></template>
+                                        <a-button v-if="record.default != 'yes'" type="primary"
+                                            @click="showDeleteConfirm(record.xid)" style="margin-left: 4px">
+                                            <template #icon>
+                                                <DeleteOutlined />
+                                            </template>
                                         </a-button>
                                     </template>
                                 </template>
