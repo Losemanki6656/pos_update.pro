@@ -16,7 +16,6 @@ class OrderItemController extends ApiBaseController
     {
         $request = request();
         $warehouse = warehouse();
-
         $query = $query->join('orders', 'orders.id', '=', 'order_items.order_id')
             ->where('orders.warehouse_id', $warehouse->id);
 

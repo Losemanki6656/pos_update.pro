@@ -212,7 +212,7 @@
                         }">
                             <a-row :gutter="16">
                                 <a-col :xs="24" :sm="24" :md="10" :lg="10" :xl="10">
-                                    <a-row :gutter="16" :style="{ background: '#dbdbdb', padding: '5px' }">
+                                    <a-row :gutter="8" :style="{ background: '#dbdbdb', padding: '5px' }">
                                         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
                                             <span class="pos-grand-total">
                                                 {{ $t("stock.grand_total") }} :
@@ -229,10 +229,10 @@
                                         </a-col>
                                     </a-row>
                                 </a-col>
-                                <a-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6" class="mt-10">
-                                    <small>
+                                <a-col :xs="24" :sm="24" :md="6" :lg="6" :xl="6">
+                                    <small style="align-items: center;">
                                         {{ $t("product.tax") }} :
-                                        {{ formatAmountCurrency(formData.tax_amount) }} |
+                                        {{ formatAmountCurrency(formData.tax_amount) }} <br>
                                         {{ $t("product.discount") }} :
                                         {{ formatAmountCurrency(formData.discount) }}
                                     </small>
@@ -250,6 +250,7 @@
                                             {{ $t("stock.reset") }}
                                         </a-button>
                                     </a-space>
+                                    
                                 </a-col>
                             </a-row>
                         </div>
@@ -476,12 +477,12 @@
                             <a-row :gutter="16">
                                 <a-col :xxl="12" :lg="10" :md="10" :sm="10" :xs="10">
                                     <a-row :gutter="16" :style="{ background: '#dbdbdb', padding: '5px' }">
-                                        <a-col :span="12">
+                                        <a-col>
                                             <span class="pos-grand-total">
                                                 {{ $t("common.total") }}
                                             </span>
                                         </a-col>
-                                        <a-col :span="12">
+                                        <a-col :span="6">
                                             <span class="pos-grand-total">
                                                 {{
                                                     formatAmountCurrency(
@@ -492,7 +493,7 @@
                                         </a-col>
                                     </a-row>
                                 </a-col>
-                                <a-col :xxl="4" :lg="6" :md="6" :sm="0" :xs="0" class="mt-10">
+                                <a-col :xxl="6" :lg="8" :md="8" :sm="0" :xs="0" class="mt-5">
                                     <a-typography-text>
                                         {{ $t("product.tax") }} :
                                         {{ formatAmountCurrency(formData.tax_amount) }} |
