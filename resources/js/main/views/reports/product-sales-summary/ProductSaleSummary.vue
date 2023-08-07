@@ -12,6 +12,11 @@
                                 {{ record.product.name }}
                             </a-badge>
                         </template>
+                        <template v-if="column.dataIndex === 'item_code'">
+                            <a-badge>
+                                {{ record.product.item_code }}
+                            </a-badge>
+                        </template>
                         <template v-if="column.dataIndex === 'unit_sold'">
                             {{ `${record.unit_sold} ${record.product.unit.short_name}` }}
                         </template>
