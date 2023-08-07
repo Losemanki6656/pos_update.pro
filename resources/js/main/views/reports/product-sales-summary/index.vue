@@ -3,13 +3,10 @@
         <template #header>
             <a-page-header :title="$t(`menu.product_sales_summary`)" class="p-0">
                 <template #extra>
-                    <ExprotTable
-                        exportType="product_sales_summary_reports"
-                        tableName="product-sales-summary-reports-table"
+                    <ExprotTable exportType="product_sales_summary_reports" tableName="product-sales-summary-reports-table"
                         :title="`${$t('menu.product_sales_summary')} ${$t(
                             'menu.reports'
-                        )}`"
-                    />
+                        )}`" />
                 </template>
             </a-page-header>
         </template>
@@ -36,40 +33,25 @@
             <a-col :xs="24" :sm="24" :md="12" :lg="14" :xl="14">
                 <a-row :gutter="[16, 16]" justify="end">
                     <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="6">
-                        <ProductSearchInput
-                            @valueChanged="
-                                (productId) => {
-                                    filters.product_id = productId;
-                                }
-                            "
-                        />
+                        <ProductSearchInput @valueChanged="(productId) => {
+                                filters.product_id = productId;
+                            }
+                            " />
                     </a-col>
                     <a-col :xs="24" :sm="24" :md="8" :lg="6" :xl="6">
-                        <a-tree-select
-                            v-model:value="filters.category_id"
-                            show-search
-                            style="width: 100%"
-                            :dropdown-style="{ maxHeight: '250px', overflow: 'auto' }"
-                            :placeholder="
-                                $t('common.select_default_text', [
-                                    $t('category.category'),
-                                ])
-                            "
-                            :tree-data="categories"
-                            allow-clear
-                            tree-default-expand-all
-                            :filterTreeNode="filterTreeNode"
-                        />
+                        <a-tree-select v-model:value="filters.category_id" show-search style="width: 100%"
+                            :dropdown-style="{ maxHeight: '250px', overflow: 'auto' }" :placeholder="$t('common.select_default_text', [
+                                $t('category.category'),
+                            ])
+                                " :tree-data="categories" allow-clear tree-default-expand-all
+                            :filterTreeNode="filterTreeNode" />
                     </a-col>
 
                     <a-col :xs="24" :sm="24" :md="10" :lg="6" :xl="6">
-                        <DateRangePicker
-                            @dateTimeChanged="
-                                (changedDateTime) => {
-                                    filters.dates = changedDateTime;
-                                }
-                            "
-                        />
+                        <DateRangePicker @dateTimeChanged="(changedDateTime) => {
+                                filters.dates = changedDateTime;
+                            }
+                            " />
                     </a-col>
                 </a-row>
             </a-col>
@@ -77,11 +59,7 @@
     </admin-page-filters>
 
     <admin-page-table-content>
-        <ProductSaleSummary
-            :product_id="filters.product_id"
-            :dates="filters.dates"
-            :category_id="filters.category_id"
-        />
+        <ProductSaleSummary :product_id="filters.product_id" :dates="filters.dates" :category_id="filters.category_id" />
     </admin-page-table-content>
 </template>
 <script>

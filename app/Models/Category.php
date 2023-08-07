@@ -20,7 +20,7 @@ class Category extends BaseModel
 
     protected $appends = ['xid', 'x_parent_id', 'image_url'];
 
-    protected $filterable = ['id', 'name', 'slug', 'parent_id'];
+    protected $filterable = ['id', 'name', 'slug', 'parent_id', 'products'];
 
     protected $hashableGetterFunctions = [
         'getXParentIdAttribute' => 'parent_id',

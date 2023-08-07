@@ -2,24 +2,13 @@
     <a-row>
         <a-col :span="24">
             <div v-if="!table.loading" class="table-responsive">
-                <a-table
-                    :columns="columns"
-                    :row-key="(record) => record.xid"
-                    :data-source="table.data"
-                    :pagination="table.pagination"
-                    :loading="table.loading"
-                    @change="handleTableChange"
-                    id="product-sales-summary-reports-table"
-                    bordered
-                    size="middle"
-                >
+                <a-table :columns="columns" :row-key="(record) => record.xid" :data-source="table.data"
+                    :pagination="table.pagination" :loading="table.loading" @change="handleTableChange"
+                    id="product-sales-summary-reports-table" bordered size="middle">
                     <template #bodyCell="{ column, record }">
                         <template v-if="column.dataIndex === 'name'">
                             <a-badge>
-                                <a-avatar
-                                    shape="square"
-                                    :src="record.product.image_url"
-                                />
+                                <a-avatar shape="square" :src="record.product.image_url" />
                                 {{ record.product.name }}
                             </a-badge>
                         </template>
@@ -30,7 +19,7 @@
                             {{
                                 formatAmountCurrency(
                                     record.unit_sold *
-                                        record.product.details.purchase_price
+                                    record.product.details.purchase_price
                                 )
                             }}
                         </template>
