@@ -1,0 +1,113 @@
+{
+  "_OfflineRequestStatus.js": {
+    "file": "assets/OfflineRequestStatus.js",
+    "imports": [
+      "resources/js/app.js",
+      "_ant_design_vue.js"
+    ]
+  },
+  "_ant_design_vue.js": {
+    "file": "assets/ant_design_vue.js"
+  },
+  "node_modules/canvg/lib/index.es.js": {
+    "file": "assets/index.es.js",
+    "imports": [
+      "_ant_design_vue.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "node_modules/canvg/lib/index.es.js"
+  },
+  "node_modules/dompurify/dist/purify.es.js": {
+    "file": "assets/purify.es.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/dompurify/dist/purify.es.js"
+  },
+  "node_modules/html2canvas/dist/html2canvas.esm.js": {
+    "file": "assets/html2canvas.esm.js",
+    "isDynamicEntry": true,
+    "src": "node_modules/html2canvas/dist/html2canvas.esm.js"
+  },
+  "resources/js/app.css": {
+    "file": "assets/app.css",
+    "src": "resources/js/app.css"
+  },
+  "resources/js/app.js": {
+    "css": [
+      "assets/app.css"
+    ],
+    "dynamicImports": [
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "node_modules/html2canvas/dist/html2canvas.esm.js",
+      "node_modules/dompurify/dist/purify.es.js",
+      "node_modules/canvg/lib/index.es.js",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/superadmin/router/index.js",
+      "resources/js/superadmin/router/admin/index.js"
+    ],
+    "file": "assets/app.js",
+    "imports": [
+      "_ant_design_vue.js"
+    ],
+    "isEntry": true,
+    "src": "resources/js/app.js"
+  },
+  "resources/js/common/layouts/Admin.css": {
+    "file": "assets/Admin.css",
+    "src": "resources/js/common/layouts/Admin.css"
+  },
+  "resources/js/common/layouts/Admin.vue": {
+    "css": [
+      "assets/Admin.css"
+    ],
+    "file": "assets/Admin.js",
+    "imports": [
+      "resources/js/app.js",
+      "_ant_design_vue.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/common/layouts/Admin.vue"
+  },
+  "resources/js/superadmin/router/admin/index.css": {
+    "file": "assets/index2.css",
+    "src": "resources/js/superadmin/router/admin/index.css"
+  },
+  "resources/js/superadmin/router/admin/index.js": {
+    "css": [
+      "assets/index2.css"
+    ],
+    "file": "assets/index2.js",
+    "imports": [
+      "resources/js/common/layouts/Admin.vue",
+      "resources/js/app.js",
+      "_ant_design_vue.js",
+      "_OfflineRequestStatus.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/superadmin/router/admin/index.js"
+  },
+  "resources/js/superadmin/router/index.css": {
+    "file": "assets/index.css",
+    "src": "resources/js/superadmin/router/index.css"
+  },
+  "resources/js/superadmin/router/index.js": {
+    "css": [
+      "assets/index.css"
+    ],
+    "file": "assets/index.js",
+    "imports": [
+      "resources/js/app.js",
+      "_ant_design_vue.js",
+      "_OfflineRequestStatus.js"
+    ],
+    "isDynamicEntry": true,
+    "src": "resources/js/superadmin/router/index.js"
+  }
+}
