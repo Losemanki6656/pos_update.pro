@@ -30,7 +30,7 @@ class StoreRequest extends FormRequest
             'name'    => 'required',
             'short_name'    => 'required',
             'email' => 'required|email|unique:companies,email',
-            'phone' => 'required|numeric|unique:companies,phone',
+            'phone' => 'required|unique:companies,phone',
             'timezone' => 'required',
             'status' => 'required',
             'user_email'    => [

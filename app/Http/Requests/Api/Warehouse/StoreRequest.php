@@ -36,7 +36,7 @@ class StoreRequest extends FormRequest
                 })
             ],
             'email'    => 'required|email',
-            'phone'    => 'required|numeric',
+            'phone'    => 'required',
             'default_pos_order_status'    => 'required',
             'customers_visibility'    => 'required',
             'suppliers_visibility'    => 'required',

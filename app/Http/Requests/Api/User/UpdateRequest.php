@@ -33,7 +33,6 @@ class UpdateRequest extends FormRequest
 
         $rules = [
             'phone'    => [
-                'numeric',
                 Rule::unique('users', 'phone')->where(function ($query) use ($company) {
                     return $query->where(function ($query) {
                         $query->where('user_type', 'staff_members')

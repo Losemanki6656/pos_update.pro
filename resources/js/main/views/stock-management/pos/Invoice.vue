@@ -3,12 +3,12 @@
         @cancel="onClose">
         <div id="pos-invoice">
             <div style="max-width: 400px; margin: 0px auto" v-if="order && order.xid">
-                <div class="invoice-header">
-                    <img class="invoice-logo" :src="selectedWarehouse.logo_url" :alt="selectedWarehouse.name" />
+                <div class="invoice-header" style="display: flex; justify-content: center">
+                    <img class="invoice-logo" style="max-width: 100px" :src="selectedWarehouse.logo_url" :alt="selectedWarehouse.name" />
                 </div>
                 <div class="company-details">
-                    <h2>{{ selectedWarehouse.name }}</h2>
-                    <p class="company-address">
+                    <h2 style="text-align: center">{{ selectedWarehouse.name }}</h2>
+                    <p style="text-align: center" class="company-address">
                         {{ selectedWarehouse.address }}
                     </p>
                     <!-- <h4 style="margin-bottom: 0px">
@@ -17,7 +17,7 @@
                     <h4>{{ $t("common.email") }}: {{ selectedWarehouse.email }}</h4> -->
                 </div>
                 <div class="tax-invoice-details">
-                    <h3 class="tax-invoice-title"><b>{{ $t("sales.tax_invoice") }}</b></h3>
+                    <h3 class="tax-invoice-title" style="text-align: center"><b>{{ $t("sales.tax_invoice") }}</b></h3>
                     <table class="invoice-customer-details">
                         <tr>
                             <td style="width: 60%">
@@ -197,7 +197,7 @@
                         tag="svg"></vue-barcode>
                 </div>
                 <div class="thanks-details">
-                    <h3>{{ $t("invoice.thanks_message") }}</h3>
+                    <h3 style="text-align: center">{{ $t("invoice.thanks_message") }}</h3>
                 </div>
             </div>
         </div>

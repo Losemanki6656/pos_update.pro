@@ -36,7 +36,7 @@ class UpdateRequest extends FormRequest
             'name'    => 'required',
             'short_name'    => 'required',
             'email' => 'required|email|unique:companies,email,' . $id,
-            'phone' => 'required|numeric|unique:companies,phone,' . $id,
+            'phone' => 'required|unique:companies,phone,' . $id,
             'timezone' => 'required',
             'status' => 'required',
             'user_email'    => [

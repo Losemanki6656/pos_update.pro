@@ -31,7 +31,7 @@ class GlobalCompanyRequest extends FormRequest
             'name'    => 'required',
             'short_name'    => 'required',
             'email' => 'required|email',
-            'phone' => 'required|numeric',
+            'phone' => 'required',
             'timezone' => 'required',
             'currency_id' => 'required',
         ];

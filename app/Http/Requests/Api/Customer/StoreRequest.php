@@ -30,7 +30,6 @@ class StoreRequest extends FormRequest
 
         $rules = [
             'phone'    => [
-                'numeric',
                 Rule::unique('users', 'phone')->where(function ($query) use ($company) {
                     return $query->where('user_type', 'customers')
                         ->where('company_id', $company->id);

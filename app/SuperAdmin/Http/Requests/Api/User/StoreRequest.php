@@ -27,7 +27,7 @@ class StoreRequest extends FormRequest
 		$rules = [
 			'name' => 'required',
 			'email' => 'required|email|unique:users,email',
-			'phone' => 'required|numeric|unique:users,phone',
+			'phone' => 'required|unique:users,phone',
 			'password' => 'required|min:8',
 			'status' => 'required',
 		];

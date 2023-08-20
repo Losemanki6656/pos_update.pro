@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
 		$rules = [
 			'name' 	=>	'required',
 			'email' 	=>	'required|required|email',
-			'phone'	=>	'required|numeric',
+			'phone'	=>	'required',
 			'address' 	=>	'required',
 			'shipping_address' 	=>	'required',
 			'zipcode'	=>	'required',
