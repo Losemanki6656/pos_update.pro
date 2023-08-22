@@ -69,6 +69,7 @@
                 >
                     <a-input
                         v-model:value="formData.phone"
+                        v-mask="maskPhone" :value="maskValue"
                         :placeholder="
                             $t('common.placeholder_default_text', [$t('company.phone')])
                         "
@@ -580,6 +581,8 @@ export default {
         const dateFormats = ref([]);
         const timeFormats = ref([]);
         const company = appSetting.value;
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
+        const maskValue = ref('');
         const currencyUrl = "currencies?limit=10000";
         const warehouseUrl = "warehouses?limit=10000";
         const timezoneUrl = "timezones";
@@ -685,6 +688,8 @@ export default {
             timeFormats,
             dayjsObject,
             appThemeMode,
+            maskPhone,
+            maskValue,
             addMenuSettingUpdated,
         };
     },
