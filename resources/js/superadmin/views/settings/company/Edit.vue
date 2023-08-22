@@ -406,7 +406,7 @@ export default {
         const currencies = ref([]);
         const timezones = ref([]);
         const dateFormats = ref([]);
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const timeFormats = ref([]);
         const allLangs = ref([]);

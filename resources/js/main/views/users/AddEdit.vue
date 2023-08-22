@@ -287,7 +287,7 @@ export default defineComponent({
         const { permsArray, user, appSetting, selectedWarehouse } = common();
         const { addEditRequestAdmin, loading, rules } = apiAdmin();
         const roles = ref([]);
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const warehouses = ref([]);
         const formData = ref({});

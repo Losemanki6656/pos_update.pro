@@ -383,7 +383,7 @@ export default defineComponent({
         const store = useStore();
         const { addEditRequestAdmin, loading, rules } = apiAdmin();
         const { slugify, salesOrderStatus, selectedWarehouse } = common();
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const activeKey = ref("basic_details");
         const radioStyle = reactive({

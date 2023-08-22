@@ -186,7 +186,7 @@ export default defineComponent({
         const visible = ref(false);
         const { t } = useI18n();
         const router = useRouter();
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const loginForm = ref(true);
         const signupSuccess = ref(false);

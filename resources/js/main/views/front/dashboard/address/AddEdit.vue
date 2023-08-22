@@ -122,7 +122,7 @@ export default defineComponent({
     setup(props, { emit }) {
         const visible = ref(false);
         const address = ref({});
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const rules = ref({});
         const addEditId = ref(null);

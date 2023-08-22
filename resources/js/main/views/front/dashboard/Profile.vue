@@ -189,7 +189,7 @@ export default {
         const store = useStore();
         const formData = ref({});
         const rules = ref({});
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const currencies = ref({});
         const user = store.state.front.user;

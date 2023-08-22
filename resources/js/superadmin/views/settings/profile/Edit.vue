@@ -171,7 +171,7 @@ export default {
         const { addEditRequestAdmin, loading, rules } = apiAdmin();
         const { t } = useI18n();
         const store = useStore();
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const formData = ref({});
         const currencies = ref({});

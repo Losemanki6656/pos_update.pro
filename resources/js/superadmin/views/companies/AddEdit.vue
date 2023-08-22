@@ -231,7 +231,7 @@ export default defineComponent({
     setup(props, { emit }) {
         const { addEditRequestAdmin, loading, rules } = apiAdmin();
         const timezones = ref([]);
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const activeTabKey = ref("basic_details");
 

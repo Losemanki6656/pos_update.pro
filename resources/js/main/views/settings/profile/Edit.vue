@@ -172,7 +172,7 @@ export default {
         const { t } = useI18n();
         const store = useStore();
         const formData = ref({});
-        const maskPhone = ref('+{{999}}({{99}})-{{999}}-{{99}}-{{99}}');
+        const maskPhone = ref('{{999}}{{99}}{{999}}{{99}}{{99}}');
         const maskValue = ref('');
         const currencies = ref({});
         const user = store.state.auth.user;
